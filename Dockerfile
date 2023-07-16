@@ -9,10 +9,18 @@ RUN apt update && \
     chmod +x bw && \
     mv bw /usr/local/bin/bw && \
     rm -rfv *.zip && \
-    apt-get clean autoclean && \
-    apt-get autoremove --yes && \
-    rm -rf /var/lib/{apt,dpkg,cache,log}/
+    apt clean autoclean && \
+    apt autoremove --yes && \
+    rm -rf /var/lib/{apt,dpkg,cache,log}/ && \
+    mkdir /bwcli && \
+    groupadd --gid 7001 bwcli && \
+    useradd -c "Service user for bitwarden cli" --home-dir /bwcli --gid 7001 --no-user-group --no-create-home --shell /sbin/nologin --uid 7001 bwcli && \
+    chown 7001:7001 /bwcli && \
+    chmod 700 /bwcli
 
-COPY entrypoint.sh /
+COPY --chmod=755 entrypoint.sh /
 
+USER bwcli
+
+VOLUME [ "/bwcli/.config/Bitwarden CLI" ]
 CMD ["/entrypoint.sh"]
