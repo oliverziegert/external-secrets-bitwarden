@@ -2,8 +2,6 @@ FROM debian:12.0
 
 ENV BW_CLI_VERSION=2023.7.0
 
-VOLUME [ "/bwcli/.config/Bitwarden CLI" ]
-
 RUN apt update && \
     apt install -y wget unzip && \
     wget https://github.com/bitwarden/clients/releases/download/cli-v${BW_CLI_VERSION}/bw-linux-${BW_CLI_VERSION}.zip && \
@@ -17,8 +15,8 @@ RUN apt update && \
     groupadd --gid 7001 bwcli && \
     useradd -c "Service user for bitwarden cli" --home-dir /bwcli --gid 7001 --no-user-group --no-create-home --shell /sbin/nologin --uid 7001 bwcli && \
     mkdir /bwcli && \
-    chown 7001:7001 /bwcli && \
-    chmod 700 /bwcli
+    chown 7001:7001 -R /bwcli && \
+    chmod 700 -R /bwcli
 
 COPY --chmod=755 entrypoint.sh /
 
