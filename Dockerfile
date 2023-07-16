@@ -21,5 +21,6 @@ RUN apt update && \
 COPY --chmod=755 entrypoint.sh /
 
 USER bwcli
+WORKDIR /bwcli
 
 CMD ["/entrypoint.sh"]

@@ -6,6 +6,7 @@ A small webhook receiver for the integration of external-secrets-operator with B
 ## Environment variables:
 | Key               | Description                                                                                               |
 | ----------------- | --------------------------------------------------------------------------------------------------------- |
-| `BW_HOST`         | Bitwarden server URL, e.g., https://your.bw.domain.com                                                     |
+| `BW_HOST`         | Bitwarden server URL, e.g., https://your.bw.domain.com                                                    |
 | `BW_CLIENTID`     | Client Id, see [Personal API Key for CLI Authentication](https://bitwarden.com/help/personal-api-key/)    |
 | `BW_CLIENTSECRET` | Client Secret, see Personal API Key for CLI Authentication](https://bitwarden.com/help/personal-api-key/) |
+| `BW_PASSWORD`     | User password to unlock your vault                                                                        |
