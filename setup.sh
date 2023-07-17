@@ -7,7 +7,7 @@ set -x
 apt update
 
 # Install required packages
-apt install --yes curl unzip jq
+apt install --yes ca-certificates curl unzip jq
 
 echo "Get download URL and download zip file ..."
 DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/bitwarden/clients/releases/latest" | jq -r ".assets[] | select(.name==\"bw-linux-${BW_CLI_VERSION}.zip\") | .browser_download_url")
@@ -36,7 +36,7 @@ mv bw /usr/local/bin/bw
 
 # Cleanup all unnecessary files and packages
 rm -rfv bw-linux-${BW_CLI_VERSION}.zip
-apt uninstall --yes curl unzip jq
+apt remove --yes curl unzip jq
 apt clean autoclean
 apt autoremove --yes
 rm -rf /var/lib/{apt,dpkg,cache,log}/
