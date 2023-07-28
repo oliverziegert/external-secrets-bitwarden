@@ -15,4 +15,4 @@ A small webhook receiver for the integration of external-secrets-operator with B
 visit: [External Secrets - Examples Bitwarden](https://external-secrets.io/main/examples/bitwarden/)
 
 ## Deployment
-will follow soon, currently in testing
+see [deploy/](deploy/) 
