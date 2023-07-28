@@ -36,11 +36,10 @@ mv bw /usr/local/bin/bw
 
 # Cleanup all unnecessary files and packages
 rm -rfv bw-linux-${BW_CLI_VERSION}.zip
-apt remove --yes curl unzip jq
+apt remove --yes unzip jq
 apt clean autoclean
 apt autoremove --yes
 rm -rf /var/lib/{apt,dpkg,cache,log}/
-
 
 # Create Bitwarden CLI service user incl. home directory -> rootless container
 groupadd --gid 7001 bwcli

@@ -1,0 +1,23 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: external-secrets-operator-bitwarden-webhook
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: bitwarden-cli
+      app.kubernetes.io/name: bitwarden-cli
+  ingress:
+  - from:
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/instance: external-secrets-operator
+            app.kubernetes.io/name: external-secrets
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/instance: external-secrets-operator
+            app.kubernetes.io/name: external-secrets-cert-controller
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/instance: external-secrets-operator
+            app.kubernetes.io/name: external-secrets-webhook
