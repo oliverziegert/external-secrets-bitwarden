@@ -21,5 +21,8 @@
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
     }
-  ]
+  ],
+  "kubernetes": {
+    "fileMatch": ["deploy\\.yml$"]
+  }
 }

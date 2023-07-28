@@ -11,6 +11,10 @@ on:
       - main
     tags:
       -  '*.*.*'
+    paths:
+      - entrypoint.sh
+      - setup.sh
+      - Dockerfile
   pull_request:
     branches:
       - "main"
