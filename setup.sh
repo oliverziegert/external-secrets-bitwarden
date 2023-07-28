@@ -1,7 +1,9 @@
 #!/bin/sh
 
 # Set debug option
-set -x
+set -o errexit
+set -o nounset
+set -o xtrace
 
 # Update apt local cache
 apt update
@@ -10,12 +12,12 @@ apt update
 apt install --yes ca-certificates curl unzip jq
 
 echo "Get download URL and download zip file ..."
-DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/bitwarden/clients/releases/latest" | jq -r ".assets[] | select(.name==\"bw-linux-${BW_CLI_VERSION}.zip\") | .browser_download_url")
+DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/bitwarden/clients/releases" | jq -r ".[] | select(.name | startswith(\"CLI\")) | .assets[] | select(.name==\"bw-linux-${BW_CLI_VERSION}.zip\") | .browser_download_url")
 curl --location --output "bw-linux-${BW_CLI_VERSION}.zip" "${DOWNLOAD_URL}"
 
 echo "Verifying file integrity..."
 ACTUAL_CHECKSUM=$(sha256sum "bw-linux-${BW_CLI_VERSION}.zip" | awk '{print $1}')
-SHA256SUMS_URL=$(curl -s "https://api.github.com/repos/bitwarden/clients/releases/latest" | jq -r ".assets[] | select(.name==\"bw-linux-sha256-${BW_CLI_VERSION}.txt\") | .browser_download_url")
+SHA256SUMS_URL=$(curl -s "https://api.github.com/repos/bitwarden/clients/releases" | jq -r ".[] | select(.name | startswith(\"CLI\")) | .assets[] | select(.name==\"bw-linux-sha256-${BW_CLI_VERSION}.txt\") | .browser_download_url")
 SHA256SUM=$(curl --location -s "$SHA256SUMS_URL")
 
 # Compare checksums to ensure integrity
