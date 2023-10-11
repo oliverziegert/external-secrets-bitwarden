@@ -1,4 +1,4 @@
-FROM debian:12.1
+FROM debian:12.2
 
 ENV BW_CLI_VERSION="2023.9.0"
 
