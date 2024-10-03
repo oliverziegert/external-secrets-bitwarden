@@ -27,7 +27,7 @@ spec:
         runAsUser: 7001
       containers:
         - name: bitwarden-cli
-          image: ghcr.io/oliverziegert/external-secrets-bitwarden:1.0.5
+          image: ghcr.io/oliverziegert/external-secrets-bitwarden:1.0.6
           imagePullPolicy: Always
           envFrom:
             - secretRef:
