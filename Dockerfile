@@ -1,6 +1,6 @@
 FROM debian:13.3
 
-ENV BW_CLI_VERSION="2025.12.0"
+ENV BW_CLI_VERSION="2025.12.1"
 
 COPY --chmod=750 setup.sh /
 
